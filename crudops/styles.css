@@ -1,0 +1,49 @@
+
+.title-container {
+    background-color: #acc0e6;
+    /* border: 1px solid #ccc; */
+    color: rgb(14, 13, 13);
+}
+
+.logo-container {
+    width: 100px;
+    height: 70px;
+    background-color: white;
+    /* margin: 10px; */
+}
+
+.logo {
+    width: 100px;
+    height: 70px;
+}
+
+.header {
+    padding: 0 0 0 0;
+}
+
+.container {
+    background-color: lightgreen;
+    border: 1px solid #ccc;
+}
+
+.container-box {
+    border: 1px solid #ccc;
+    border-radius: 7px;
+    padding: 7px;
+    background-color: #fdff9d;
+    line-height: 1.5;
+}
+
+
+/* Captcha Image CSS */
+
+.captcha {
+    width: 120px;
+    height: 37px;
+}
+
+.btn-primary {
+    height: 37px;
+    background-color: rgb(150, 184, 230);
+    border-color: rgb(59, 137, 238);
+}

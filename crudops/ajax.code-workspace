@@ -1,0 +1,19 @@
+{
+	"folders": [
+		{
+			"path": "../ajax"
+		},
+		{
+			"path": "../crudassignment"
+		},
+		{
+			"path": "../dashboard"
+		},
+		{
+			"path": "../img"
+		},
+		{
+			"path": "."
+		}
+	]
+}

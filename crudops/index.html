@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Leave Application</title>
+    <!-- Link Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <!-- Link Font Awesome Icon CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- Link your custom CSS -->
+    <link rel="stylesheet" href="styles.css" />
+
+    <!-- Link jQuery AJAX CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+ 
+    
+
+    <style>
+      body,
+      html {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+      }
+      .form-container {
+        height: 100%;
+        overflow: hidden;
+      }
+    </style>
+
+
+  </head>
+
+  <body>
+    <div class="container header col-md-8 mt-2">
+      <div class="d-flex title-container pr-3">
+        <!--pr-3 -> right padding-->
+        <!-- d-flex-It turns the element into a flex container, allowing its children to be positioned with flex properties.-->
+        <div class="logo-container">
+          <img class="logo" src="images/jorim_logo.png" />
+        </div>
+        <div class="ml-auto">
+          <h4 class="text-right">Leave Application</h4>
+          <h6 class="text-right">Leave Request Form</h6>
+        </div>
+      </div>
+    </div>
+    <div class="container col-md-8 p-3 pb-4">
+      <!-- style="overflow: hidden;"-->
+
+      <div class="form-container" id="form-container">
+        <!--style="height: 100vh;"-->
+        <form id="leaveForm" name="leaveForm" method="post">
+          <!--action="insert.php"-->
+          <!-- form action-->
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="firstName"
+                >Employee Name <span class="text-danger">*</span></label
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="firstName"
+                name="firstName"
+                required
+                
+              />
+              <small class="form-text text-muted">First</small>
+              <span id="firstNameError" style="color: red;"></span>
+            </div>
+
+            <div class="form-group col-md-6">
+              <label class="invisible">Employee Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="lastName"
+                name="lastName"
+                required
+              />
+              <small class="form-text text-muted">Last</small>
+              <span id="lastNameError" style="color: red;"></span>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-4">
+              <label for="employeeId"
+                >Employee ID <span class="text-danger">*</span></label
+              >
+              
+              <input
+                type="text"
+                class="form-control"
+                id="employeeId"
+                name="employeeId"
+                required
+                maxlength="6"
+                
+              />   
+              <!--  -->
+              <span id="employeeIdError" style="color: red;"></span>
+
+            </div>
+
+            <div class="form-group col-md-4">
+              <label for="department">Department</label>
+              <select
+                class="custom-select"
+                id="department"
+                name="department"
+                required
+              >
+                <option value="Development">Development</option>
+                <option value="HR">INFORMATION TECHNOLOGY</option>
+                <option value="Sales">GRAPHIC DESIGN</option>
+                <option value="QA">ACCOUNTS</option>
+              </select>
+            </div>
+
+            <div class="form-group col-md-4 mb-0">
+              <label for="requestDate"
+                >Date <span class="text-danger">*</span></label
+              >
+              <input
+                type="date"     
+                class="form-control"
+                id="requestDate"
+                name="requestDate"
+                required
+                value=""
+              />  <!--datetime-local-->
+            </div>
+          </div>
+          <div class="form-group">
+            <label
+              >Type of Absence Request <span class="text-danger">*</span></label
+            >
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    id="sick"
+                    name="leaveType[0]"
+                    value="sick"
+                  />
+                  <label class="form-check-label" for="sick">Sick</label>
+                </div>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    id="personal"
+                    name="leaveType[1]"
+                    value="personal"
+                  />
+                  <label class="form-check-label" for="personal"
+                    >Personal Leave</label
+                  >
+                </div>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    id="bereavement"
+                    name="leaveType[2]"
+                    value="bereavement"
+                  />
+                  <label class="form-check-label" for="bereavement"
+                    >Bereavement</label
+                  >
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    id="maternityPaternity"
+                    name="leaveType[3]"
+                    value="maternityPaternity"
+                  />
+                  <label class="form-check-label" for="maternityPaternity"
+                    >Maternity/Paternity</label
+                  >
+                </div>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    id="timeOff"
+                    name="leaveType[4]"
+                    value="timeOff"
+                  />
+                  <label class="form-check-label" for="timeOff"
+                    >Time off without payment</label
+                  >
+                </div>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    id="others"
+                    name="leaveType[5]"
+                    value="others"
+                  />
+                  <label class="form-check-label" for="others">Others</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="reason">Reason</label>
+            <textarea
+              class="form-control"
+              id="reason"
+              name="reason"
+              rows="3"
+              required
+            ></textarea>
+            <span id="reasonError" style="color: red;"></span>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="absenceFrom"
+                >Absence From <span class="text-danger">*</span></label
+              >
+              <input
+                type="date"
+                class="form-control"
+                id="absenceFrom"
+                name="absenceFrom"
+                value=""
+                required
+              />
+            </div>
+            <div class="form-group col-md-6">
+              <label for="absenceThrough"
+                >Absence Through <span class="text-danger">*</span></label
+              >
+              <input
+                type="date"
+                class="form-control"
+                id="absenceThrough"
+                name="absenceThrough"
+                value=""
+                required
+              />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="container-box">
+              <!-- style="line-height: 0.5;  (use here or external css)-->
+
+              <p>
+                <b>Certification: </b>I hereby request leave/approved absence
+                from duty as indicated above and certify that such leave/absence
+                is requested for the purpose(s) indicated. I understand that
+                flasification on this form may be grounds for disciplinary
+                action.
+              </p>
+            </div>
+          </div>
+
+          <div class="captcha-label">
+            <label for="captchaInput">Enter the text in the box below:</label>
+          </div>
+          <div class="row">
+            <div class="captcha-container pl-3">
+              <img
+                class="captcha"
+                src="images/download.jfif"
+                alt="CAPTCHA Image"
+              />
+            </div>
+            <i class="fa fa-refresh ml-3 pt-2"></i>
+            <!--  icon -->
+            <input
+              type="text"
+              class="form-control col-md-3 ml-3"
+              id="captch-text"
+              name="captcha-text"
+              required
+            />
+            <button
+              type="submit"
+              class="btn btn-primary ml-3"
+              name="submit"
+              id="submit"
+            >
+              Submit
+            </button>
+
+            <button type="button" class="btn btn-primary ml-3" name="display" id="display">Display</button>
+
+
+
+            <button
+              type="button"
+              class="btn btn-primary ml-3"
+              name="edit"
+              onclick="location.href='view.php'"
+            >
+              Edit
+            </button>
+
+            <button
+              type="button"
+              class="btn btn-primary ml-3"
+              name="deleteRecord"
+              formaction="delete.php"
+              onclick="location.href='view.php'"
+            >
+              Delete
+            </button>
+          </div>
+        </form>
+
+        
+</div>
+        
+  <div id="records-container" style="display: none;"></div>
+      </div>
+    </div>
+
+<script>
+$(document).ready(function () {
+  $('#submit').click(function (e) {       // Handle the click event of the "Submit" button
+    e.preventDefault(); // Prevent the default form submission
+    
+    $.ajax({                // Make an AJAX request to insert.php to submit the form data
+      url: 'insert.php',
+      type: 'post',
+      data: $('#leaveForm').serialize(), // Serialize the form data
+      success: function (response) {
+        alert(response); 
+        // $("#leaveForm")[0].reset(); // Reset the form
+      },
+      error: function (xhr, status, error) {32
+        console.log(xhr.responseText);
+      },
+    });
+  });
+
+    // Function to hide the form and show the display table
+    function showDisplayTable() {
+    $('#form-container').hide();
+    $('#records-container').show();
+  }
+  
+  $('#display').click(function () {              // "Display" button
+    var employeeId = $('#employeeId').val();
+
+    $.ajax({
+      url: 'view.php',
+      type: 'get',
+      data: { employeeId: employeeId },
+      success: function (data) {
+        $('#records-container').html(data); // Display records in the "records-container" div
+      },
+      error: function (xhr, status, error) {
+        console.log(xhr.responseText);
+      },
+    });
+    
+    showDisplayTable(); // Hide form and show display table
+  });
+
+  // Load and display records when the page initially loads
+  loadRecords();
+});
+
+// Function to load and display records
+function loadRecords() {
+  $.ajax({
+    url: 'view.php',
+    type: 'get',
+    success: function (data) {
+      $('#records-container').html(data);
+    },
+    error: function (xhr, status, error) {
+      console.log(xhr.responseText);
+    },
+  });
+}
+    </script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+      // Get the input element and error message element
+      var firstNameInput = document.getElementById('firstName');
+      var firstNameError = document.getElementById('firstNameError');
+      var lastNameInput = document.getElementById('lastName');
+      var lastNameError = document.getElementById('lastNameError');
+    
+      // Add an event listener to the input field
+      firstNameInput.addEventListener('input', function () {
+          // Get the value of the input
+          var firstName = firstNameInput.value;
+    
+          // Define the minimum and maximum allowed length
+          var minLength = 3;
+          var maxLength = 30;
+    
+          // Check the length of the input value
+          if (firstName.length < minLength || firstName.length > maxLength) {
+              // Display an error message
+              firstNameError.textContent = 'First name must be between ' + minLength + ' and ' + maxLength + ' characters.';
+          } else {
+              // Clear the error message if the length is valid
+              firstNameError.textContent = '';
+          }
+      });
+
+       // Add an event listener to the Last Name input field
+  lastNameInput.addEventListener('input', function () {
+    // Check if the Last Name input has at least 1 character
+    if (lastNameInput.value.length < 1) {
+      lastNameError.textContent = 'Last name must have at least 1 character.';
+    } else {
+      lastNameError.textContent = '';
+    }
+  });
+
+  //     var employeeIdInput = document.getElementById('employeeId');
+  // var employeeIdError = document.getElementById('employeeIdError');
+
+  // // Add an event listener to the input field
+  // employeeIdInput.addEventListener('input', function () {
+  //   // Get the value of the input and remove any non-numeric characters
+  //   var employeeId = employeeIdInput.value.replace(/\D/g, '');
+
+  //   // Define the required length
+  //   var requiredLength = 6;
+
+  //   // Check if the employeeId has the required length and contains only numeric characters
+  //   if (employeeId.length > requiredLength || isNaN(employeeId)) {
+  //     // Display an error message
+  //     employeeIdError.textContent = 'Employee ID must be less than ' + requiredLength + ' numeric characters.';
+  //   } else {
+  //     // Clear the error message if the input is valid
+  //     employeeIdError.textContent = '';
+  //   }
+  // });
+
+  document.addEventListener('DOMContentLoaded', function () {
+  var reasonInput = document.getElementById('reason');
+  var reasonError = document.getElementById('reasonError');
+
+  reasonInput.addEventListener('input', function () {
+    var minLength = 20; // Minimum character length
+
+    if (reasonInput.value.length < minLength) {
+      reasonError.textContent = 'Minimum 20 characters required.';
+    } else {
+      reasonError.textContent = ''; // Clear the error message if the input meets the requirement
+    }
+  });
+});
+
+// Get the date input element
+var requestDateInput = document.getElementById('requestDate');
+var absenceFromInput = document.getElementById('absenceFrom');
+var absenceThroughInput =document.getElementById('absenceThrough');
+// Create a new Date object to get the current date
+var currentDate = new Date();
+
+// Format the current date as YYYY-MM-DD (required by date input)
+var formattedDate = currentDate.toISOString().split('T')[0];
+
+// Set the value of the date input to the current date
+requestDateInput.value = formattedDate;
+// absenceFromInput.value = formattedDate;
+
+// Set the minimum and maximum date attributes to the current date
+requestDateInput.min = formattedDate;
+requestDateInput.max = formattedDate;
+absenceFromInput.min = formattedDate; // Set the min attribute for Absence From input
+absenceThroughInput.min =formattedDate;
+
+
+// Absence from - Absence through
+
+  // Add an event listener to the "Absence From" input
+  absenceFromInput.addEventListener('input', function () {
+    // Get the value of the "Absence From" date
+    var absenceFromDate = new Date(absenceFromInput.value);
+    // console.log(absenceFromDate);
+
+    // Calculate the maximum date allowed for "Absence Through" (6 months later)
+    var maxAbsenceThroughDate = new Date(absenceFromDate);
+    // console.log( maxAbsenceThroughDate);
+    maxAbsenceThroughDate.setMonth(absenceFromDate.getMonth() + 6);
+
+    // Format the maximum date as YYYY-MM-DD
+    var formattedMaxDate = maxAbsenceThroughDate.toISOString().split('T')[0];
+    
+    // Set the max attribute of the "Absence Through" input to the calculated maximum date
+    // absenceThroughInput.min =absenceFromDate;
+    absenceThroughInput.max = formattedMaxDate;
+    console.log(absenceThroughInput.max);
+  });
+
+
+
+    </script>
+  </body>
+</html>
